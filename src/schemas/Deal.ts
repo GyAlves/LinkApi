@@ -12,14 +12,11 @@ class Deal {
   @ObjectIdColumn()
   id: ObjectID;
 
-  @Column()
-  name: string;
+  @Column('date')
+  date: Date;
 
   @Column('decimal')
-  price: number;
-
-  @Column('date')
-  wonDate: Date;
+  total: number;
 
   @CreateDateColumn()
   createdAt: Date;
