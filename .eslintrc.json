@@ -23,6 +23,9 @@
         "prettier"
     ],
     "rules": {
+      "no-plusplus":"off",
+      "array-callback-return":"off",
+      "consistent-return":"off",
       "prettier/prettier": "error",
       "class-methods-use-this": "off",
       "import/extensions": [

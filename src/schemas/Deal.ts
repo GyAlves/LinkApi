@@ -12,8 +12,8 @@ class Deal {
   @ObjectIdColumn()
   id: ObjectID;
 
-  @Column('date')
-  date: Date;
+  @Column()
+  data: string;
 
   @Column('decimal')
   total: number;

@@ -10,10 +10,11 @@ class TransformDataService {
     const pedidos = data.map(item => {
       return {
         data: item.pedido.data,
-        total: item.pedido.totalvenda,
+        total: Number(item.pedido.totalvenda),
       };
     });
     return pedidos;
+    console.log(pedidos);
   }
 }
 
