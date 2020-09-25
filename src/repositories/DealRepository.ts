@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import Deal from '../schemas/Deal';
 
 interface DealDTO {
-  data: string;
+  date: string;
   total: number;
 }
 
@@ -14,8 +14,8 @@ class DealRepository extends Repository<Deal> {
     return deals;
   }
 
-  public async createDeal(data: string, total: number): Promise<DealDTO> {
-    const deal = this.create({ data, total });
+  public async createDeal(date: string, total: number): Promise<DealDTO> {
+    const deal = this.create({ date, total });
 
     await this.save(deal);
 

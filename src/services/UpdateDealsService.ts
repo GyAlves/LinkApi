@@ -6,19 +6,16 @@ interface Deal {
   total: number;
 }
 
-class CreateDealService {
+class UpdateDealService {
   public async execute(deals: Deal[]): Promise<Deal[]> {
     const dealRepository = getCustomRepository(DealRepository);
 
-    deals.forEach(async deal => {
-      const create = await dealRepository.createDeal(deal.date, deal.total);
-      await dealRepository.save(create);
-    });
-
-    const wons = await dealRepository.findDeals();
-
-    return wons;
+    const findDeals = await dealRepository.findDeals();
+    if (deals.length === findDeals.length) {
+      return findDeals;
+    }
+    await dealRepository.clear();
   }
 }
 
-export default CreateDealService;
+export default UpdateDealService;

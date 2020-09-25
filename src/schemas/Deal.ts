@@ -13,7 +13,7 @@ class Deal {
   id: ObjectID;
 
   @Column()
-  data: string;
+  date: string;
 
   @Column('decimal')
   total: number;
