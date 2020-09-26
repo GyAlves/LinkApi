@@ -8,16 +8,23 @@ interface Deal {
 
 class CreateDealService {
   public async execute(deals: Deal[]): Promise<Deal[]> {
-    const dealRepository = getCustomRepository(DealRepository);
+    try {
+      const dealRepository = getCustomRepository(DealRepository);
 
-    deals.forEach(async deal => {
-      const create = await dealRepository.createDeal(deal.date, deal.total);
-      await dealRepository.save(create);
-    });
-
-    const wons = await dealRepository.findDeals();
-
-    return wons;
+      deals.forEach(async item => {
+        const findDeal = await dealRepository.findOne({ where: item.date });
+        if (findDeal) {
+          findDeal.total += item.total;
+        } else {
+          const deal = await dealRepository.createDeal(item.date, item.total);
+          await dealRepository.save(deal);
+        }
+      });
+      const wons = await dealRepository.findDeals();
+      return wons;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

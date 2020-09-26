@@ -8,7 +8,8 @@ interface DealDTO {
 class TransformDataService {
   public async execute(data: DealDTO[]): Promise<Omit<DealDTO, 'pedido'>> {
     // Get the data from the api and return only the date and the value fields
-    const deals = data.map(item => {
+    try{
+      const deals = data.map(item => {
       return {
         date: item.pedido.data,
         total: Number(item.pedido.totalvenda),
@@ -64,6 +65,7 @@ class TransformDataService {
     });
 
     return finalDeal;
+    }catch(err){console.log(err)}
   }
 }
 
